@@ -24,18 +24,28 @@ public class MainActivity extends AppCompatActivity {
             String texto=radio.getText().toString();
 
             Toast mensaje = Toast.makeText(MainActivity.this,texto , Toast.LENGTH_SHORT);
+            View view = mensaje.getView();
+            /*
+            He estado mirando y creo que esta es la fomra de hacerlo sin layout personalizados
+            pero parece que no funciona en todas las versiones de android y la verdad es que he probado en varios emuladores
+            y no he conseguido que cambie el color
+            */
+            if (view != null) {
+                TextView text = view.findViewById(android.R.id.message);
+                if(texto.equals("Verde")){
+                    text.setTextColor(Color.GREEN);
+                }else if(texto.equals("Rojo")){
+                    text.setTextColor(Color.RED);
+                }else if(texto.equals("Azul")){
+                    text.setTextColor(Color.BLUE);
+                }
+            }
+
+
+
             mensaje.show();
 
-            View view = mensaje.getView();
-            TextView text =(TextView) view.findViewById(android.R.id.message);
 
-            if(texto.equals("Verde")){
-                text.setTextColor(Color.GREEN);
-            }else if(texto.equals("Rojo")){
-                text.setTextColor(Color.RED);
-            }else if(texto.equals("Azul")){
-                text.setTextColor(Color.BLUE);
-            }
         }
     }
 
